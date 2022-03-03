@@ -11,24 +11,18 @@ let package = Package(
         .macOS(.v10_12)
     ],
     products: [
-        .library(name: "ConfigCat", type: .dynamic, targets: ["ConfigCat"])
+        .library(name: "ConfigCat", targets: ["ConfigCat"])
     ],
     dependencies: [],
     targets: [
         .target(name: "Version",
                 dependencies: [],
-                exclude: ["LICENSE" , "version.txt"],
-                linkerSettings: [
-                    .linkedFramework("Foundation"),
-                ]),
+                exclude: ["LICENSE" , "version.txt"]),
         .target(name: "ConfigCat",
                 dependencies: ["Version"],
                 exclude: ["Resources/ConfigCat.h", "Resources/Info.plist"],
                 swiftSettings: [
                     .define("DEBUG", .when(configuration: .debug))
-                ],
-                linkerSettings: [
-                    .linkedFramework("Foundation"),
                 ]),
         .testTarget(name: "ConfigCatTests",
                     dependencies: ["ConfigCat"],
