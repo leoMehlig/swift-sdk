@@ -143,14 +143,14 @@ final class ConfigParser {
                     
                     let rolloutRules = json[Config.rolloutRules] as? [[String: Any]] ?? []
                     for rule in rolloutRules {
-                        if variationId == rule[Config.variationId] as? String, let value = json[Config.value]  {
+                        if variationId == rule[Config.variationId] as? String, let value = rule[Config.value]  {
                             return (key, value)
                         }
                     }
                     
                     let rolloutPercentageItems = json[Config.rolloutPercentageItems] as? [[String: Any]] ?? []
                     for rule in rolloutPercentageItems {
-                        if variationId == rule[Config.variationId] as? String, let value = json[Config.value] {
+                        if variationId == rule[Config.variationId] as? String, let value = rule[Config.value] {
                             return (key, value)
                         }
                     }
